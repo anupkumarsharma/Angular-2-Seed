@@ -34,16 +34,11 @@ module.exports = function (config) {
             // only show one suite and fail log at a time, with keyboard navigation 
             focusMode: true,
           },
-
-
           // web server port
           port: 9876,
           colors: true,
           logLevel: config.LOG_INFO,
-          browsers: ['Chrome'],
-
-
-
+          browsers: ['PhantomJS'],
           concurrency: Infinity
         })
     }

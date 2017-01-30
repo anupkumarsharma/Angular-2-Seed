@@ -5,6 +5,7 @@ const yargs = require('yargs').argv;
 registerTask('./gulp');
 //gulp  --production
 console.log(yargs.production);
+
 gulp.task('default', () => {
 	console.log('Gulp is running!');
 });
@@ -16,7 +17,6 @@ function registerTask(directory: string) {
 		console.log('Registering gulp task ' + files[i]);
 		let importType = require(directory + '/' + files[i]);
 		if (importType.gulpTask !== undefined) {
-			console.log(importType.gulpTask);
 			importType.gulpTask();
 		}
 

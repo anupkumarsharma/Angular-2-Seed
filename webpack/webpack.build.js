@@ -1,10 +1,10 @@
-var loaders = require("./loaders");
-var preloaders = require("./preloaders");
+var loaders = require("./loaders.build");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 const LoaderOptionsPlugin = require("webpack/lib/LoaderOptionsPlugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var CommonsChunkPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin")
+var CommonsChunkPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin");
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
     entry: {
@@ -28,13 +28,21 @@ module.exports = {
         }),
         // Lint
         new webpack.LoaderOptionsPlugin({
-            options: {
-                tslint: {
-                    emitErrors: true,
-                    failOnHint: true
+                options: {
+                    tslint: {
+                        emitErrors: true,
+                        failOnHint: true,
+                    },
+                    // autoprefix CSS 
+                    postcss: [
+                        autoprefixer({
+                            browsers: ['last 2 version']
+                        })
+                    ]
                 }
             }
-        }),
+
+        ),
         new ExtractTextPlugin('app.css'),
         // mimify
         new webpack.optimize.UglifyJsPlugin({
@@ -58,11 +66,7 @@ module.exports = {
     ],
     module: {
         // load all the files 
-        loaders: loaders
+        rules: loaders
 
     },
-    //     tslint: {
-    //         emitErrors: true,
-    //         failOnHint: true
-    //   }
 };

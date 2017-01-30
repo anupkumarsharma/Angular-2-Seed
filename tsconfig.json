@@ -42,6 +42,9 @@
     "outDir": "out",
     "emitDecoratorMetadata": true
   },
+  "include": [
+        "/**/*.ts"
+    ],
   "exclude": [
     "out",
     "node_modules",

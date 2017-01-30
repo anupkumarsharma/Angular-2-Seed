@@ -8,10 +8,10 @@ describe('subtract method', () => {
         // expect(exporting.getConfig()).toBe(2);
     });
 
-     it('subtracts 2 numbers', () => {
+    it('subtracts 2 numbers', () => {
         expect(21).toBe(21);
     });
-     it('subtracts 2 number', () => {
+    it('subtracts 2 number', () => {
         expect(21).toBe(21);
     });
 });

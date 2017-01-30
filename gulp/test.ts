@@ -1,22 +1,37 @@
+// Since testing is just karma run, we can use webpack to execute it too. 
+// Using gulp however since its support far more plugins then webpack and its very flexible to configure.
 import * as gulp from 'gulp';
-const karma = require('gulp-karma-runner');
-const Server = require('karma').Server;
-import * as config from '../config/projectConfig';
-const loadCoverage = require('remap-istanbul/lib/loadCoverage')
-const remap = require('remap-istanbul/lib/remap');
+import * as environment from '../config/projectConfig';
+import karma = require('gulp-karma-runner');
+import Server = require('karma');
+import remapIstanbul = require('remap-istanbul/lib/gulpRemapIstanbul');
+import del = require('del');
+
+
 export function gulpTask() {
-    gulp.task('test', ['cover'], function(done: any) {
-        new Server({
-            configFile: config.getConfig().basePath + '/karma.conf.js',
+
+    gulp.task('test', ['clean.cover', 'karma', 'remap-istanbul']);
+
+    gulp.task('karma', (done) => {
+        new Server.Server({
+            configFile: environment.getConfig().basePath.toString() + '/karma.conf.js',
+            files: environment.getConfig().sourceSpecPath,
             singleRun: true,
-            files: config.getConfig().sourceSpecPath
         }, done).start();
     });
 
-    gulp.task('cover', function () {
-        const coverage = loadCoverage(config.getConfig().basePath + 'coverage/coverage.json');
-        const collector = remap(coverage); /* collector now contains the remapped coverage */
+    gulp.task('clean.cover', () => {
+        del(environment.getConfig().basePath.toString() + 'coverage/');
     });
 
+    gulp.task('remap-istanbul', () => {
+        gulp.src(environment.getConfig().basePath.toString() + 'coverage/coverage.json')
+            .pipe(remapIstanbul())
+            .pipe(gulp.dest(environment.getConfig().basePath.toString() + 'coverage/'));
+    });
 
-} 
+}
+
+
+
+

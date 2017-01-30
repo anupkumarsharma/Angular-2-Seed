@@ -1,4 +1,4 @@
-var loaders = require("./loaders");
+var loaders = require("./loaders.dev");
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
@@ -47,7 +47,9 @@ module.exports = {
             'window.jquery': 'jquery'
         })
     ],
-    module: {
-        loaders: loaders
-    }
+   module: {
+        // load all the files 
+        rules: loaders
+
+    },
 };

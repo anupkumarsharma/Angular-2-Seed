@@ -1,5 +1,10 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = [{
+    test: /\.ts$/,
+    loader: 'tslint-loader',
+    enforce: "pre"
+}, {
     // load and process TS 
     test: /\.ts(x?)$/,
     loader: 'ts-loader'
