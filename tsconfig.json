@@ -1,0 +1,55 @@
+// {
+//     "compilerOptions": {
+//         "allowUnreachableCode": false,
+//         "outDir": "bin",
+//         "noImplicitAny": true,
+//         "noImplicitReturns": true,
+//         "sourceMap": true,
+//         "module": "commonjs",
+//         "experimentalDecorators": true
+//     },
+//     "include": [
+//         "/**/*.ts"
+//     ],
+//     "types": [
+//         "core-js"
+//     ],
+
+//     //  "types" : [ "node" ,"gulp-jscs"],
+//     "typeRoots": [
+//         "../node_modules/@types",
+//         "node_modules/@types",
+//         "../@types",
+//         "external/node_modules/@types"
+//     ],
+//     "exclude": [
+//         "node_modules",
+//         "typings/browser.d.ts",
+//         "typings/browser",
+//         "/**/*.spec.ts",
+//         "**/*spec.ts"
+//     ]
+// }
+
+{
+  "compilerOptions": {
+    "target": "es5",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "outDir": "out",
+    "emitDecoratorMetadata": true
+  },
+  "exclude": [
+    "out",
+    "node_modules",
+    "dist",
+    "dev",
+    "reports",
+    "/**/*.spec.ts",
+    "**/*spec.ts"
+  ],
+  "version": "2.0.6"
+}

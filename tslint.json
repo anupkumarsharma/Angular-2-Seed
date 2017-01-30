@@ -1,0 +1,79 @@
+// {
+//   "rulesDirectory": ["../../node_modules/codelyzer"],
+//   "rules": {
+//     "class-name": true,
+//     "curly": false,
+//     "eofline": true,
+//     "indent": [true, "spaces"],
+//     "max-line-length": [true, 140],
+//     "member-ordering": [true,
+//       "public-before-private",
+//       "static-before-instance",
+//       "variables-before-functions"
+//     ],
+//     "no-arg": true,
+//     "no-construct": true,
+//     "no-duplicate-variable": true,
+//     "no-empty": true,
+//     "no-eval": true,
+//     "no-trailing-whitespace": true,
+//     "no-unused-expression": true,
+//     "no-use-before-declare": true,
+//     "one-line": [true,
+//       "check-open-brace",
+//       "check-catch",
+//       "check-else",
+//       "check-whitespace"
+//     ],
+//     "quotemark": [true, "single"],
+//     "semicolon": [true, "always"],
+//     "trailing-comma": true,
+//     "triple-equals": true,
+//     "variable-name": false,
+
+//     "directive-selector": [true, "attribute", [], "camelCase"],
+//     "component-selector": [true, "element", [], "kebab-case"],
+//     "use-input-property-decorator": true,
+//     "use-output-property-decorator": true,
+//     "use-host-property-decorator": true,
+//     "no-input-rename": true,
+//     "no-output-rename": true,
+//     "use-life-cycle-interface": true,
+//     "use-pipe-transform-interface": true,
+//     "component-class-suffix": true,
+//     "directive-class-suffix": true,
+//     "import-destructuring-spacing": true,
+//     "templates-use-public": true,
+//     "no-access-missing-member": true,
+//     "invoke-injectable": true
+//   }
+// }
+{
+  /*
+   * Possible values:
+   * - the name of a built-in config
+   * - the name of an NPM module which has a "main" file that exports a config object
+   * - a relative path to a JSON file
+   */
+  "extends": "tslint:latest",
+  "rules": {
+    /*
+     * Any rules specified here will override those from the base config we are extending.
+     */
+    "curly": true,
+    "quotemark": [true, "single"]
+  },
+  "jsRules": {
+    /*
+     * Any rules specified here will override those from the base config we are extending.
+     */
+    "curly": true
+  },
+  "rulesDirectory": [
+    /*
+     * A list of relative or absolute paths to directories that contain custom rules.
+     * See the Custom Rules documentation below for more details.
+     */
+  ]
+}
+
