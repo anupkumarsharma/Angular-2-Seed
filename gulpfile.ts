@@ -1,14 +1,9 @@
 import * as fs from 'fs';
 import * as gulp from 'gulp';
-const yargs = require('yargs').argv;
+const yargs: any = require('yargs').argv;
+const default_Env_Build = 'qa';
 
 registerTask('./gulp');
-//gulp  --production
-console.log(yargs.production);
-
-gulp.task('default', () => {
-	console.log('Gulp is running!');
-});
 
 // get all the files in gulp directory and register them.
 function registerTask(directory: string) {
@@ -17,7 +12,10 @@ function registerTask(directory: string) {
 		console.log('Registering gulp task ' + files[i]);
 		let importType = require(directory + '/' + files[i]);
 		if (importType.gulpTask !== undefined) {
-			importType.gulpTask();
+			if (yargs.env === undefined) {
+				yargs.env = default_Env_Build;
+			}
+			importType.gulpTask(yargs.env);
 		}
 
 	}

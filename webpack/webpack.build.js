@@ -1,3 +1,4 @@
+var appConfig = require("../config/environmentConfig");
 var loaders = require("./loaders.build");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
@@ -5,7 +6,13 @@ const LoaderOptionsPlugin = require("webpack/lib/LoaderOptionsPlugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CommonsChunkPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin");
 var autoprefixer = require('autoprefixer');
-
+var ExtendedDefinePlugin = require('extended-define-webpack-plugin');
+const environment = process.argv[process.argv.indexOf('--define')+1];
+var verifyPlugin = require('./customPlugins/verifyplugin');
+console.log(environment);
+//Get the specific config from environmentConfig
+var config = eval('appConfig.'+environment);
+//console.log(config);
 module.exports = {
     entry: {
         app: ['./src/main.ts'],
@@ -15,12 +22,23 @@ module.exports = {
         filename: '[name].js',
         path: 'dist'
     },
-    devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
     resolve: {
         //  root: __dirname,
         extensions: ['.ts', '.js', '.json']
     },
     plugins: [
+        new verifyPlugin({
+            breakBuild:config==undefined
+        }),
+        new webpack.NoErrorsPlugin(),
+        //adding global 
+        new ExtendedDefinePlugin({
+            'process.env': {  
+                'Build_Type':environment,
+                'APP_CONFIG': config
+            }
+        }),
         // chunk the bundle
         new CommonsChunkPlugin({
             name: 'vendors',

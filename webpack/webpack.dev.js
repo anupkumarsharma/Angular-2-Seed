@@ -4,6 +4,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CommonsPlugin = new require("webpack/lib/optimize/CommonsChunkPlugin")
+var ExtendedDefinePlugin = require('extended-define-webpack-plugin');
+var appConfig = require("../config/environmentConfig");
 module.exports = {
     entry: {
         app: ['./src/main.ts'],
@@ -20,6 +22,12 @@ module.exports = {
 
     devtool: "inline-eval-cheap-source-map",
     plugins: [
+
+        new ExtendedDefinePlugin({
+            'process.env': {
+                'APP_CONFIG': appConfig.dev
+            }
+        }),
         new CommonsPlugin({
             name: 'vendors',
             minChunks: 3
@@ -47,7 +55,7 @@ module.exports = {
             'window.jquery': 'jquery'
         })
     ],
-   module: {
+    module: {
         // load all the files 
         rules: loaders
 

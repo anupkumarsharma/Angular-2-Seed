@@ -25,7 +25,7 @@ $ npm install
 $ gulp dev
 
 # Builds the application for production. Uses TSLint for linting
-$ gulp build
+$ gulp build --define production
 
 # Tests  the application and outputs reports in console and coverage. Uses remap-istanbul to remap.
 $ gulp test
